@@ -8,8 +8,8 @@ on:
       - development
 
 jobs:
-  compile-and-test:
-    name: Compile Typescript & Run Unit Tests
+  build:
+    name: Compile Typescript
     runs-on: ubuntu-latest
     strategy:
       matrix:
