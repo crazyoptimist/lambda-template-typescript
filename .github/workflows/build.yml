@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, closed]
+    branches:
+      - main
+      - development
+
+jobs:
+  compile-and-test:
+    name: Compile Typescript & Run Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ${{ matrix.node-version  }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version  }}
+          cache: 'npm'
+
+      - name: Install dependancies
+        run: npm ci
+
+      - name: Compile Typescript
+        run: npm run build
