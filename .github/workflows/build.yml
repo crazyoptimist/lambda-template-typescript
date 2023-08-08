@@ -1,11 +1,13 @@
 name: Build
 
 on:
+  push:
+    branches:
+     - main
   pull_request:
     types: [opened, edited, synchronize, reopened, closed]
     branches:
       - main
-      - development
 
 jobs:
   build:
