@@ -1,0 +1,7 @@
+node_modules/
+.vscode
+*.log
+*.out
+*.env
+.nyc_output/
+*.crt

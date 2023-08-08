@@ -1,0 +1,31 @@
+service: lambda-template-typescript
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  timeout: 300 # 5 minutes timeout
+
+# Package functions individually
+package:
+  individually: true
+
+# Functions
+functions:
+  hello:
+    handler: src/functions/hello.handler
+    events:
+      - http:
+          path: /hello
+          method: post
+
+# Serverless plugins
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+# Custom tsconfig
+custom:
+  serverlessPluginTypescript:
+    tsConfigFileLocation: './tsconfig.json'
