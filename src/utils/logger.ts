@@ -5,7 +5,7 @@ import { lambdaRequestTracker, pinoLambdaDestination } from 'pino-lambda';
 const destination = pinoLambdaDestination();
 
 export const logger = pino(
-  process.env.NODE_ENV !== 'production'
+  process.env.PRETTY_LOG === 'true'
     ? {
         transport: {
           target: 'pino-pretty',
